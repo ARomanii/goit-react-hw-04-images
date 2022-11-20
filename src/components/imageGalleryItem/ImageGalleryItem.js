@@ -1,25 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './ImageGalleryItem.module.css';
+import css from './ImageGalleryItem.module.css';
 
-const ImageGalleryItem = ({ smallImage, largeImage, onClick }) => {
-  return (
-    <li className={styles.ImageGalleryItem}>
-      <img
-        onClick={() => onClick(largeImage)}
-        src={smallImage}
-        alt="gallaryImg"
-        className={styles.ImageGalleryItemImage}
-      />
-    </li>
-  );
-};
+export const ImageGalleryItem = ({ image, onclick }) => (
+  <li className={css.ImageGalleryItem} id={image.id} onClick={onclick}>
+    <img
+      src={image.webformatURL}
+      alt={image.tags}
+      name={image.largeImageURL}
+      className={css.ImageGalleryItemImage}
+    />
+  </li>
+);
 
 ImageGalleryItem.propTypes = {
-  smallImage: PropTypes.string.isRequired,
-  largeImage: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
+  image: PropTypes.object.isRequired,
+  onclick: PropTypes.func.isRequired,
 };
-
-export default ImageGalleryItem;
